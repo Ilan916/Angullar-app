@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-app';
+  public title = 'counter';
+  public count = 5;
+  public product: any;
+  public products: any;
+
+  constructor(private httpClient: HttpClient) {
+    this.fetchProducts();
+  }
+
+  public fetchProducts() {
+    this.httpClient.get('https://fakestoreapi.com/products')
+      .subscribe((res: any) => {
+        this.product = res[0];
+        this.products = res.slice(0, 6);
+      });
+  }
+
+  public add() {
+    this.count++;
+  }
+
+  public minus() {
+    this.count--;
+  }
 }
