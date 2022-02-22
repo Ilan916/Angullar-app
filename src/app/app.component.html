@@ -9,10 +9,15 @@
 <!--  <p>{{ product.description }}</p>-->
 <!--  <img width="100" height="100" [src]="product.image" />-->
 <!--</div>-->
+<div class="container_product">
+
 
 <div *ngFor="let pd of products; let i = index" class="product-detail">
-  {{ i }}
+  <img src="{{ pd.image }}">
   <h2>{{ pd.title }}</h2>
+  <p>rate : {{ pd.rating.rate }} / 5 , count : {{ pd.rating.count }}</p>
   <p>{{ pd.description }}</p>
-  <strong>{{ pd.price }}</strong>
+  <strong>{{ pd.price }} €</strong>
+</div>
+
 </div>
